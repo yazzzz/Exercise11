@@ -51,12 +51,17 @@ def reverse(l):
         # resultlist.append(item)
         #return resultlist
 
-print reverse([1,2,3,4])
+#print reverse([1,2,3,4])
 
 # Fibonacci returns the nth fibonacci number. The nth fibonacci number is
 # defined as fib(n) = fib(n-1) + fib(n-2)
-def fibonacci(n):
-    pass
+def fib(n):
+    if n == 1 or n == 2:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+#print fib(3)
 
 # Finds the item i in the list l.... RECURSIVELY
 def find(l, i):
@@ -80,13 +85,31 @@ def palindrome(some_string):
         else:
             return palindrome(some_string[1:-1])
 
-print palindrome("toot")    
+#print palindrome("toot")    
 
-# Given the width and height of a sheet of paper, and the number of times to fold it, return the final dimensions of the sheet as a tuple. Assume that you always fold in half along the longest edge of the sheet.
+# Given the width and height of a sheet of paper, and the number of times to fold it, 
+# return the final dimensions of the sheet as a tuple. Assume that you always 
+# fold in half along the longest edge of the sheet.
 def fold_paper(width, height, folds):
-    return (0, 0)
+    if folds == 0:
+        return (width, height)
+    else:
+        bigger = max(width, height)
+        if width == bigger or width == height:
+            return fold_paper(width/2.0, height, folds-1)
+        else:
+            return fold_paper(width, height/2.0, folds-1)
+
+print fold_paper(18,6,3)
 
 # Count up
-# Print all the numbers from 0 to target
-def count_up(target, n):
+# Print all the numbers from 0(n?) to target
+def count_up(n, target):
+    if n == target:
+        print n
+    else:
+        print n
+        count_up(n + 1, target)
     return
+
+#count_up(4, 12)
