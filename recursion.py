@@ -40,13 +40,16 @@ def sum_list(l):
 
 # Reverse a list without slicing or loops
 def reverse(l):
-    resultlist = []
+    #resultlist = [] #part of alternative solution noted below
     if len(l) == 1:
         return l
     else:
         item = l.pop(0)
-        resultlist = reverse(l)
-        resultlist.append(item)
+        return [item] + reverse(l)
+        # long alt also works below
+        # resultlist = reverse(l)
+        # resultlist.append(item)
+        #return resultlist
 
 print reverse([1,2,3,4])
 
@@ -57,11 +60,27 @@ def fibonacci(n):
 
 # Finds the item i in the list l.... RECURSIVELY
 def find(l, i):
-    return None
+    if i == 0:
+        return l[0]
+    else:
+        l.pop(0)
+        return find(l, i-1)
+        
+#print find(["a","b","c","d","e"], 4)
 
 # Determines if a string is a palindrome
 def palindrome(some_string):
-    return False
+    if len(some_string) == 1 or len(some_string) == 0:
+        return True
+    else:
+        first_value = some_string[0]
+        last_value = some_string[-1]
+        if first_value != last_value:
+            return False
+        else:
+            return palindrome(some_string[1:-1])
+
+print palindrome("toot")    
 
 # Given the width and height of a sheet of paper, and the number of times to fold it, return the final dimensions of the sheet as a tuple. Assume that you always fold in half along the longest edge of the sheet.
 def fold_paper(width, height, folds):
